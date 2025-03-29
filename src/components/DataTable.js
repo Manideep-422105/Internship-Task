@@ -7,7 +7,6 @@ const DataTable = ({ data }) => {
   const [filter, setFilter] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
-  // Update columns when data changes
   useEffect(() => {
     if (data && data.length > 0) {
       setColumns(Object.keys(data[0]));
@@ -18,7 +17,6 @@ const DataTable = ({ data }) => {
     return <p>No data available</p>;
   }
 
-  // Handle Drag-and-Drop
   const handleDragEnd = (result) => {
     if (!result.destination) return;
 
@@ -29,7 +27,6 @@ const DataTable = ({ data }) => {
     setColumns(newColumns);
   };
 
-  // Handle Sorting
   const handleSort = (column) => {
     let direction = "asc";
     if (sortConfig.key === column && sortConfig.direction === "asc") {
@@ -44,7 +41,6 @@ const DataTable = ({ data }) => {
     });
   };
 
-  // Handle Filtering
   const handleFilterChange = (column, value) => {
     setFilter({ ...filter, [column]: value.toLowerCase() });
   };
@@ -55,8 +51,25 @@ const DataTable = ({ data }) => {
     )
   );
 
+  const downloadCSV = () => {
+    const csvRows = [];
+    csvRows.push(columns.join(","));
+    filteredData.forEach(row => {
+      csvRows.push(columns.map(col => row[col]).join(","));
+    });
+    const csvString = csvRows.join("\n");
+    const blob = new Blob([csvString], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="table-container">
+      <button onClick={downloadCSV} className="download-btn">Download CSV</button>
       <DragDropContext onDragEnd={handleDragEnd}>
         <table>
           <thead>

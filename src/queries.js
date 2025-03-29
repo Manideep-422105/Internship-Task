@@ -105,4 +105,41 @@ export const queries = [
       { Department: "Finance", avg_salary: 75000 },
     ],
   },
+  {
+    "id": 3,
+    "query": "SELECT month",
+    "data": [
+      { "Month": "January", "Total_Sales": 50000 },
+      { "Month": "February", "Total_Sales": 42000 },
+      { "Month": "March", "Total_Sales": 62000 },
+      { "Month": "April", "Total_Sales": 70000 },
+      { "Month": "May", "Total_Sales": 75000 },
+      { "Month": "June", "Total_Sales": 68000 },
+      { "Month": "July", "Total_Sales": 72000 },
+      { "Month": "August", "Total_Sales": 69000 },
+      { "Month": "September", "Total_Sales": 71000 },
+      { "Month": "October", "Total_Sales": 73000 },
+      { "Month": "November", "Total_Sales": 77000 },
+      { "Month": "December", "Total_Sales": 80000 }
+    ]
+  },
+  {
+    "id": 5,
+    "query": "SELECT category",
+    "data": [
+      { "Category": "Electronics", "Avg_Rating": 4.5 },
+      { "Category": "Clothing", "Avg_Rating": 3.9 },
+      { "Category": "Home Appliances", "Avg_Rating": 4.2 },
+      { "Category": "Books", "Avg_Rating": 4.8 },
+      { "Category": "Toys & Games", "Avg_Rating": 4.3 },
+      { "Category": "Beauty & Personal Care", "Avg_Rating": 4.6 },
+      { "Category": "Automotive", "Avg_Rating": 3.7 },
+      { "Category": "Furniture", "Avg_Rating": 4.1 },
+      { "Category": "Sports & Outdoors", "Avg_Rating": 4.4 },
+      { "Category": "Groceries", "Avg_Rating": 4.0 }
+    ]
+  }
+  
+  
+  
 ];
