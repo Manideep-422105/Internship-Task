@@ -1,4 +1,5 @@
 import React from "react";
+import html2canvas from "html2canvas";
 import {
   BarChart,
   Bar,
@@ -15,25 +16,38 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import "./DataVisualization.css"; // Import CSS
+import "./DataVisualization.css";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const DataVisualization = ({ data, chartType }) => {
   if (!data || data.length === 0) return <p>No data to visualize</p>;
 
-  // Extract numeric columns dynamically
   const keys = Object.keys(data[0]);
   const numericKeys = keys.filter((key) => typeof data[0][key] === "number");
 
   if (numericKeys.length === 0) return <p>No numeric data available for visualization</p>;
 
+  // 📌 Function to Capture & Download Chart as PNG
+  const downloadChartAsImage = () => {
+    const chartElement = document.querySelector(".data-visualization-container");
+    html2canvas(chartElement).then((canvas) => {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "chart.png";
+      link.click();
+    });
+  };
+
   return (
     <div className="data-visualization-container">
+      
       <h3 className="data-visualization-heading">
         {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Chart
       </h3>
-      <ResponsiveContainer width="100%" height="100%">
+
+      {/* Chart Rendering */}
+      <ResponsiveContainer width="100%" height={300}>
         {chartType === "bar" && (
           <BarChart data={data}>
             <XAxis dataKey={keys[0]} />
@@ -58,7 +72,7 @@ const DataVisualization = ({ data, chartType }) => {
         )}
         {chartType === "pie" && (
           <PieChart>
-            <Pie data={data} dataKey={numericKeys[0]} nameKey={keys[0]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8">
+            <Pie data={data} dataKey={numericKeys[0]} nameKey={keys[0]} cx="50%" cy="50%" outerRadius={80}>
               {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
@@ -77,6 +91,11 @@ const DataVisualization = ({ data, chartType }) => {
           </ScatterChart>
         )}
       </ResponsiveContainer>
+
+      {/* 📌 Download Button */}
+      <button className="download-btn" onClick={downloadChartAsImage}>
+        Download Chart as PNG
+      </button>
     </div>
   );
 };
