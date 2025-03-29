@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaDatabase, FaSun, FaMoon, FaEnvelope } from "react-icons/fa";
+import { FaDatabase, FaSun, FaMoon, FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Email from "../components/Email";
 import "./Header.css";
@@ -10,6 +10,7 @@ const Header = ({ query, data, onVisualizeClick }) => {
   });
 
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -21,6 +22,14 @@ const Header = ({ query, data, onVisualizeClick }) => {
     }
   }, [darkMode]);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="header">
       {/* Left Side: Project Name + SQL Logo */}
@@ -29,27 +38,47 @@ const Header = ({ query, data, onVisualizeClick }) => {
         <h1 className="project-name">SQL Visualizer</h1>
       </div>
 
+      {/* Mobile Menu Toggle */}
+      <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+        {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
       {/* Right Side: Navigation Links */}
-      <nav className="header-right">
-        <Link to="/" className="nav-link">
+      <nav className={`header-right ${mobileMenuOpen ? "mobile-open" : ""}`}>
+        <Link to="/" className="nav-link" onClick={handleLinkClick}>
           Home
         </Link>
 
-        {/* Changed from Link to button styled as a link */}
         <button 
-          onClick={onVisualizeClick} 
+          onClick={() => {
+            onVisualizeClick();
+            handleLinkClick();
+          }} 
           className="nav-link"
         >
           Visualize
         </button>
 
         {/* Send Email Button */}
-        <button className="email-btn" onClick={() => setShowEmailForm(true)}>
+        <button 
+          className="email-btn" 
+          onClick={() => {
+            setShowEmailForm(true);
+            handleLinkClick();
+          }}
+        >
           <FaEnvelope className="icon" />
+          <span className="email-text">Email</span>
         </button>
 
         {/* Dark Mode Toggle */}
-        <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
+        <button 
+          className="toggle-btn" 
+          onClick={() => {
+            setDarkMode(!darkMode);
+            handleLinkClick();
+          }}
+        >
           {darkMode ? <FaSun className="icon" /> : <FaMoon className="icon" />}
         </button>
       </nav>
