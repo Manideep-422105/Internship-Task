@@ -1,52 +1,78 @@
 .table-container {
-  overflow-x: auto;
   width: 100%;
+  overflow-x: auto;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
   border: 1px solid #ddd;
-  padding: 12px;
+  padding: 10px;
   text-align: left;
-  font-size: 14px;
-  cursor: grab; /* Show draggable cursor */
 }
 
 th {
   background-color: #007bff;
   color: white;
-  font-weight: bold;
-  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
 }
 
-tr:nth-child(even) {
+th.sorted.asc::after {
+  content: " ▲";
+}
+
+th.sorted.desc::after {
+  content: " ▼";
+}
+
+th input {
+  width: 90%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-tr:hover {
-  background-color: rgba(0, 123, 255, 0.2);
-  transition: background-color 0.3s ease-in-out;
+tbody tr:hover {
+  background-color: #f1f1f1;
 }
 
-td {
-  color: #333;
-}
-
-/* Responsive Design */
+/* 📱 Mobile Responsive Styles */
 @media (max-width: 768px) {
+  th, td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  th input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container {
+    padding: 5px;
+  }
+
   table {
     font-size: 12px;
   }
 
   th, td {
-    padding: 8px;
+    padding: 6px;
+  }
+
+  th input {
+    width: 75%;
   }
 }

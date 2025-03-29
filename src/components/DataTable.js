@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./DataTable.css";
 
 const DataTable = ({ data }) => {
-  // Ensure columns state is always initialized to avoid conditional hook calls
-  const [columns, setColumns] = useState(data && data.length > 0 ? Object.keys(data[0]) : []);
+  const [columns, setColumns] = useState([]);
+  const [filter, setFilter] = useState({});
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+
+  // Update columns when data changes
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setColumns(Object.keys(data[0]));
+    }
+  }, [data]);
 
   if (!data || data.length === 0) {
     return <p>No data available</p>;
@@ -21,6 +29,32 @@ const DataTable = ({ data }) => {
     setColumns(newColumns);
   };
 
+  // Handle Sorting
+  const handleSort = (column) => {
+    let direction = "asc";
+    if (sortConfig.key === column && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key: column, direction });
+
+    data.sort((a, b) => {
+      if (a[column] < b[column]) return direction === "asc" ? -1 : 1;
+      if (a[column] > b[column]) return direction === "asc" ? 1 : -1;
+      return 0;
+    });
+  };
+
+  // Handle Filtering
+  const handleFilterChange = (column, value) => {
+    setFilter({ ...filter, [column]: value.toLowerCase() });
+  };
+
+  const filteredData = data.filter((row) =>
+    columns.every((col) =>
+      filter[col] ? String(row[col]).toLowerCase().includes(filter[col]) : true
+    )
+  );
+
   return (
     <div className="table-container">
       <DragDropContext onDragEnd={handleDragEnd}>
@@ -36,8 +70,10 @@ const DataTable = ({ data }) => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
+                          onClick={() => handleSort(col)}
+                          className={sortConfig.key === col ? `sorted ${sortConfig.direction}` : ""}
                         >
-                          {col}
+                          {col} {sortConfig.key === col ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
                         </th>
                       )}
                     </Draggable>
@@ -46,9 +82,20 @@ const DataTable = ({ data }) => {
                 </tr>
               )}
             </Droppable>
+            <tr>
+              {columns.map((col) => (
+                <th key={col}>
+                  <input
+                    type="text"
+                    placeholder={`Filter ${col}`}
+                    onChange={(e) => handleFilterChange(col, e.target.value)}
+                  />
+                </th>
+              ))}
+            </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {filteredData.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {columns.map((col, colIndex) => (
                   <td key={colIndex}>{row[col]}</td>
