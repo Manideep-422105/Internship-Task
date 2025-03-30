@@ -28,7 +28,7 @@ This project is a **dynamic and interactive data table** built using **React.js*
 
 ## 4. Optimizations for Performance
 
-### **-Code Splitting & Lazy Loading: Implemented React.lazy() for dynamically loading components.**
+   **-Code Splitting & Lazy Loading: Implemented React.lazy() for dynamically loading components.**
 
    **-Optimized CSS & Assets: Minified CSS and used SVG icons to reduce file size.**
 
@@ -37,11 +37,11 @@ This project is a **dynamic and interactive data table** built using **React.js*
    **-Efficient State Management: Used useState and useReducer optimally to manage state efficiently.**
 
    **-Reduced HTTP Requests: Minimized external API calls and optimized the JSON data for visualization.**
-###
+
 
 ### **Installation & Setup**  
 1. Clone the repository:  
    ```sh
-   git clone https://github.com/Manideep-422105/Atlan_Task.git
+   git clone https://github.com/Manideep-422105/Internship-Task.git
    cd frontend
    npm run start
