@@ -26,11 +26,13 @@ const DataVisualization = ({ data, chartType }) => {
   const keys = Object.keys(data[0]);
   const numericKeys = keys.filter((key) => typeof data[0][key] === "number");
 
-  if (numericKeys.length === 0) return <p>No numeric data available for visualization</p>;
+  if (numericKeys.length === 0)
+    return <p>No numeric data available for visualization</p>;
 
-  // 📌 Function to Capture & Download Chart as PNG
   const downloadChartAsImage = () => {
-    const chartElement = document.querySelector(".data-visualization-container");
+    const chartElement = document.querySelector(
+      ".data-visualization-container"
+    );
     html2canvas(chartElement).then((canvas) => {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
@@ -41,12 +43,9 @@ const DataVisualization = ({ data, chartType }) => {
 
   return (
     <div className="data-visualization-container">
-      
       <h3 className="data-visualization-heading">
         {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Chart
       </h3>
-
-      {/* Chart Rendering */}
       <ResponsiveContainer width="100%" height={300}>
         {chartType === "bar" && (
           <BarChart data={data}>
@@ -55,7 +54,11 @@ const DataVisualization = ({ data, chartType }) => {
             <Tooltip />
             <Legend />
             {numericKeys.map((key, index) => (
-              <Bar key={index} dataKey={key} fill={COLORS[index % COLORS.length]} />
+              <Bar
+                key={index}
+                dataKey={key}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </BarChart>
         )}
@@ -66,15 +69,30 @@ const DataVisualization = ({ data, chartType }) => {
             <Tooltip />
             <Legend />
             {numericKeys.map((key, index) => (
-              <Line key={index} type="monotone" dataKey={key} stroke={COLORS[index % COLORS.length]} />
+              <Line
+                key={index}
+                type="monotone"
+                dataKey={key}
+                stroke={COLORS[index % COLORS.length]}
+              />
             ))}
           </LineChart>
         )}
         {chartType === "pie" && (
           <PieChart>
-            <Pie data={data} dataKey={numericKeys[0]} nameKey={keys[0]} cx="50%" cy="50%" outerRadius={80}>
+            <Pie
+              data={data}
+              dataKey={numericKeys[0]}
+              nameKey={keys[0]}
+              cx="50%"
+              cy="50%"
+              outerRadius={80}
+            >
               {data.map((_, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
             <Tooltip />
@@ -92,7 +110,6 @@ const DataVisualization = ({ data, chartType }) => {
         )}
       </ResponsiveContainer>
 
-      {/* 📌 Download Button */}
       <button className="download-btn" onClick={downloadChartAsImage}>
         Download Chart as PNG
       </button>

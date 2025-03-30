@@ -45,7 +45,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* 📱 Mobile Responsive Styles */
 @media (max-width: 480px) {
   .query-editor {
     padding: 5px;

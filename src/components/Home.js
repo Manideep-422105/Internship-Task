@@ -14,7 +14,6 @@ const Home = () => {
   const [data, setData] = useState(queries[0].data);
   const [chartType, setChartType] = useState("bar");
 
-  // Create a ref for the visualization section
   const visualizationRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const Home = () => {
     console.log("Query Result:", result); 
   };
 
-  // Function to scroll to visualization section
   const scrollToVisualization = () => {
     visualizationRef.current?.scrollIntoView({ 
       behavior: 'smooth'

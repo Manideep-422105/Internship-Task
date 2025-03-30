@@ -19,8 +19,6 @@ const Email = ({ query, queryResult }) => {
   const sendEmail = (e) => {
     e.preventDefault();
     setSending(true);
-
-    // Check if query data exists
     if (!query || !queryResult) {
       alert("No query data available to send!");
       setSending(false);
@@ -46,7 +44,7 @@ const Email = ({ query, queryResult }) => {
         (result) => {
           setSending(false);
           alert("Email sent successfully!");
-          setForm({ name: "", email: "", message: "" }); // Reset form
+          setForm({ name: "", email: "", message: "" }); 
         },
         (error) => {
           setSending(false);

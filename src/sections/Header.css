@@ -1,271 +1,266 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
-    background-color: #1a202c;
-    color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #1a202c;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  margin-right: 12px;
+  color: #3498db;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: rotate(15deg);
+}
+
+.project-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.header-right {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.email-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.email-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.email-btn:active {
+  transform: translateY(0);
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #e2e8f0;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
+  to {
+    opacity: 1;
   }
-  
-  .logo {
-    font-size: 2rem;
-    margin-right: 12px;
-    color: #3498db;
-    transition: transform 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
   }
-  
-  .logo:hover {
-    transform: rotate(15deg);
-  }
-  
-  .project-name {
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    background: linear-gradient(90deg, #3498db, #2ecc71);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  .header-right {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-  
-  .nav-link {
-    color: #e2e8f0;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .nav-link:hover {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Email Button */
-  .email-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 14px;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .email-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .email-btn:active {
+  to {
     transform: translateY(0);
+    opacity: 1;
   }
-  
-  .icon {
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #64748b;
+  transition: color 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close:hover {
+  color: #e53e3e;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .modal-content {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+.dark-mode .close {
+  color: #a0aec0;
+}
+
+.dark-mode .close:hover {
+  color: #f56565;
+}
+
+@media (max-width: 768px) {
+  .project-name {
     font-size: 1.2rem;
   }
-  
-  /* Dark Mode Toggle */
-  .toggle-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
+
+  .logo {
     font-size: 1.5rem;
-    color: #e2e8f0;
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
+    margin-right: 8px;
   }
-  
-  .toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-  }
-  
-  /* Mobile menu toggle button - hidden by default */
+
   .mobile-menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 5px;
+    display: block;
   }
-  
-  /* Modal Styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(3px);
-    animation: fadeIn 0.3s ease;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 450px;
-    max-width: 90%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    position: relative;
-    animation: slideIn 0.3s ease;
-  }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  .close {
+
+  .header-right {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #64748b;
-    transition: color 0.2s;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #1a202c;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-right.mobile-open {
+    max-height: 300px;
+    padding: 16px;
+  }
+
+  .nav-link,
+  .email-btn,
+  .toggle-btn {
+    width: 100%;
     justify-content: center;
-    border-radius: 50%;
   }
-  
-  .close:hover {
-    color: #e53e3e;
-    background-color: rgba(0, 0, 0, 0.05);
+
+  .email-btn {
+    padding: 10px;
   }
-  
-  /* Dark mode adjustments for modal */
-  .dark-mode .modal-content {
-    background: #2d3748;
-    color: #e2e8f0;
+
+  .email-text {
+    display: inline-block;
   }
-  
-  .dark-mode .close {
-    color: #a0aec0;
+
+  .modal-content {
+    width: 85%;
+    padding: 20px;
   }
-  
-  .dark-mode .close:hover {
-    color: #f56565;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 16px;
   }
-  
-  /* Media Queries for Responsive Design */
-  @media (max-width: 768px) {
-    .project-name {
-      font-size: 1.2rem;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      margin-right: 8px;
-    }
-    
-    .mobile-menu-toggle {
-      display: block;
-    }
-    
-    .header-right {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: #1a202c;
-      flex-direction: column;
-      gap: 10px;
-      padding: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      z-index: 100;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .header-right.mobile-open {
-      max-height: 300px;
-      padding: 16px;
-    }
-    
-    .nav-link, .email-btn, .toggle-btn {
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .email-btn {
-      padding: 10px;
-    }
-    
-    .email-text {
-      display: inline-block;
-    }
-    
-    .modal-content {
-      width: 85%;
-      padding: 20px;
-    }
+
+  .project-name {
+    font-size: 1rem;
   }
-  
-  /* For very small screens */
-  @media (max-width: 480px) {
-    .header {
-      padding: 12px 16px;
-    }
-    
-    .project-name {
-      font-size: 1rem;
-    }
-    
-    .logo {
-      font-size: 1.2rem;
-      margin-right: 6px;
-    }
+
+  .logo {
+    font-size: 1.2rem;
+    margin-right: 6px;
   }
+}
