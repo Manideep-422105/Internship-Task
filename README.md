@@ -6,6 +6,7 @@ This project is a **dynamic and interactive data table** built using **React.js*
 - **Sorting** (Ascending/Descending order for each column)  
 - **Filtering** (Real-time input-based filtering)  
 - **CSV Export** (Download filtered data as a CSV file)  
+- **Data Visualization** (In different formats like bar chart, pie chart etc)
 - **EmailJS** (For Sending Results through mail)
 
 ## 2. Tech Stack and Dependencies  
